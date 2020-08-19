@@ -1,0 +1,1 @@
+{"ast":null,"code":"import Home from \"../src/views\";\nexport default Home;","map":{"version":3,"sources":["C:/Users/Arthur/Desktop/oldFiles/programing/next_react/pages/index.js"],"names":["Home"],"mappings":"AAAA,OAAOA,IAAP,MAAiB,cAAjB;AAEA,eAAeA,IAAf","sourcesContent":["import Home from \"../src/views\"\r\n\r\nexport default Home\r\n"]},"metadata":{},"sourceType":"module"}
