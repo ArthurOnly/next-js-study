@@ -13,6 +13,9 @@ function Home() {
           <img src="" />
           <h4>Login</h4>
         </div>
+        <form>
+          <div class="input-block"></div>
+        </form>
       </div>
       <aside className="aside-menu"></aside>
       <footer></footer>
