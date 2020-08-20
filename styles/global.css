@@ -1,0 +1,28 @@
+* {
+  padding: 0;
+  margin: 0;
+  vertical-align: baseline;
+  list-style: none;
+  border: 0;
+}
+
+:root {
+  --background-dark: #292929;
+  --background-high-dark: rgba(0, 0, 0, 0.2);
+  --background-light: #fff;
+  --primary: #25a25a;
+  --primary-hover: #1c7943;
+
+  --border-sm: 4px;
+  --border-md: 8px;
+  --border-lg: 50%;
+
+  --text-in-light: #666666;
+  --text-in-dark: #fff;
+}
+
+body,
+#__next {
+  width: 100vw;
+  height: 100vh;
+}

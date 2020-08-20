@@ -1,3 +1,5 @@
-import Home from "../src/views"
+function Help() {
+  return <h1>Help</h1>
+}
 
-export default Home
+export default Help
