@@ -7,7 +7,7 @@
 }
 
 :root {
-  --background-dark: #292929;
+  --background-dark: #555;
   --background-high-dark: rgba(0, 0, 0, 0.2);
   --background-light: #fff;
   --primary: #25a25a;
@@ -25,4 +25,15 @@ body,
 #__next {
   width: 100vw;
   height: 100vh;
+  box-sizing: border-box;
+  font-family: "lato";
+
+  font-size: 60%;
+}
+
+@media only screen and (min-width: 1200) {
+  body,
+  #__next {
+    font-size: 100%;
+  }
 }
