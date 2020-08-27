@@ -1,9 +1,24 @@
 import { useState } from "react"
+import { useRouter } from "next/router"
 
-function Home() {
-  const [name, setName] = useState("tete")
+import Button from "../components/Button"
+
+export async function getStaticProps() {
+  //Executado antes da pagina ser entregue ao cliente
+  return {
+    props: {
+      posts: { hi: "hello" },
+    },
+  }
+}
+
+function Home({ posts }) {
+  const router = useRouter()
+
   return (
     <div id="login-page" className="login-page">
+      <h1>{JSON.stringify(posts)}</h1>
+      <h1 onClick={() => router.push("/help", "teste")}>router</h1>
       <div className="form">
         <img
           src="https://suap.ifrn.edu.br/static/comum/img/logo-login.png"
@@ -29,7 +44,9 @@ function Home() {
         </div>
       </div>
       <aside className="aside-menu"></aside>
-      <footer></footer>
+      <footer>
+        <Button />
+      </footer>
 
       <style jsx>{`
         #login-page {
@@ -43,6 +60,7 @@ function Home() {
         .form {
           background-color: var(--background-light);
           width: 90%;
+          max-width: 600px;
           align-self: center;
           margin: auto 0;
           padding: 45px 0;
@@ -105,6 +123,7 @@ function Home() {
           color: #fff;
           font-size: 1rem;
           font-weight: 300;
+          cursor: pointer;
         }
         .form form button:hover {
           background-color: var(--primary-hover);
