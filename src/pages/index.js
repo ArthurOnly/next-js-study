@@ -136,7 +136,7 @@ function Home({ posts }) {
         .form a {
           font-size: 0.8rem;
           color: var(--primary);
-          margin: auto 20px;
+          margin: auto 21px;
           align-self: flex-end;
         }
       `}</style>
