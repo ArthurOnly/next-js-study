@@ -1,4 +1,4 @@
-import { useState } from "react"
+import useSWR from "swr"
 import { useRouter } from "next/router"
 
 import Button from "../components/Button"
@@ -12,12 +12,39 @@ export async function getStaticProps() {
   }
 }
 
+/*export async function getServerSideProps() {
+  return {
+    props: {
+      posts: { say: "hello" },
+    }, // will be passed to the page component as props
+  }
+}*/
+
+async function getData() {
+  const req = await fetch("http://127.0.0.1:5000/").then(res => res.json())
+  return req
+}
+
+function useData() {
+  const { data, error } = useSWR(`http://127.0.0.1:5000/`, getData())
+  return {
+    user: data,
+    isLoading: !error && !data,
+    isError: error,
+  }
+}
+
 function Home({ posts }) {
   const router = useRouter()
 
+  const { user, isLoading, isError } = useData()
+  console.log([user, isLoading, isError])
+
   return (
     <div id="login-page" className="login-page">
-      <h1>{JSON.stringify(posts)}</h1>
+      <h1 onClick={() => console.log([user, isLoading, isError])}>
+        {JSON.stringify(posts)}
+      </h1>
       <h1 onClick={() => router.push("/help", "teste")}>router</h1>
       <div className="form">
         <img
@@ -136,7 +163,7 @@ function Home({ posts }) {
         .form a {
           font-size: 0.8rem;
           color: var(--primary);
-          margin: auto 21px;
+          margin: auto 20px;
           align-self: flex-end;
         }
       `}</style>
