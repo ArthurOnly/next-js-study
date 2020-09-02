@@ -20,33 +20,31 @@ export async function getStaticProps() {
   }
 }*/
 
-async function getData() {
-  const req = await fetch("http://127.0.0.1:5000/").then(res => res.json())
-  return req
-}
-
-function useData() {
-  const { data, error } = useSWR(`http://127.0.0.1:5000/`, getData())
+function useData(url) {
+  const { data, error } = useSWR(url, async url => {
+    const response = await fetch(url)
+    const data = await response.json()
+    return data
+  })
   return {
-    user: data,
+    data,
     isLoading: !error && !data,
-    isError: error,
+    error,
   }
 }
 
 function Home({ posts }) {
   const router = useRouter()
+  const { data, isLoading, error } = useData("http://127.0.0.1:5000/")
+  console.log([data, isLoading, error])
 
-  const { user, isLoading, isError } = useData()
-  console.log([user, isLoading, isError])
+  if (isLoading) return <h1>Loading</h1>
+  if (error) return <h1>Error</h1>
 
   return (
     <div id="login-page" className="login-page">
-      <h1 onClick={() => console.log([user, isLoading, isError])}>
-        {JSON.stringify(posts)}
-      </h1>
-      <h1 onClick={() => router.push("/help", "teste")}>router</h1>
       <div className="form">
+        <h1 onClick={() => router.push("/help")}>Ir</h1>
         <img
           src="https://suap.ifrn.edu.br/static/comum/img/logo-login.png"
           className="logo"
